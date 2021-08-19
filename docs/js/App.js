@@ -1,6 +1,7 @@
 // @flow
 import { h } from "../web_modules/preact.js";
-import Counter from "./Counter.js";
+import Counter from "./Bouddi.js";
+import Bouddi from "./Bouddi.js";
 import Router from "../web_modules/preact-router.js";
 import { html } from "../web_modules/htm/preact.js";
 import { AppProvider } from "./AppContext.js";
@@ -14,8 +15,8 @@ const App /*: function */ = (props /*: Props */) => {
   return html`
     <${AppProvider} >
       <${Router} url="${props.url}">
-        <${Counter} count="1" path="/" />
-        <${Counter} count="6" path="/this/is/a/test/of/the/cache/script" />
+        <${Bouddi} path="/" />
+        <${Bouddi} path="/bouddi" />
       </${Router}>
     </${AppProvider} >
   `;
