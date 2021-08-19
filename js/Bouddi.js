@@ -82,6 +82,14 @@ const Bouddi = (props /*: Props */) /*: string */ => {
     L.marker(house3).addTo(map);
     var house4 = L.latLng([380, 515]);
     L.marker(house4).addTo(map);
+    var house5 = L.latLng([80, 390]);
+    L.marker(house5).addTo(map);
+    var house6 = L.latLng([540, 640]);
+    L.marker(house6).addTo(map);
+    var house7 = L.latLng([690, 730]);
+    L.marker(house7).addTo(map);
+    var house8 = L.latLng([750, 920]);
+    L.marker(house8).addTo(map);
   }, []);
 
   // console.log(props.count.isInteger());
