@@ -12,6 +12,9 @@ import {
   setSeed,
 } from "../web_modules/simplestyle-js.js";
 import { AppContext } from "./AppContext.js";
+import fetchCoordinates from "./actions/fetchCoordinates.js";
+import width from "./actions/width.js";
+import height from "./actions/height.js";
 
 const seed /*: number */ = parseInt(
   "Bouddi".split("").reduce(
@@ -43,8 +46,8 @@ const [styles] = createStyles({
     justifyContent: "center",
   },
   map: {
-    width: `${window.innerWidth}px`,
-    height: `${window.innerHeight}px`,
+    width: `${width()}px`,
+    height: `${height()}px`,
   },
 });
 
@@ -59,37 +62,27 @@ const Bouddi = (props /*: Props */) /*: string */ => {
     const map = L.map("map", {
       crs: L.CRS.Simple,
     });
-
     const bounds = [
       [0, 0],
       [1000, 1000],
     ];
     const image = L.imageOverlay("/img/map_bouddi.png", bounds).addTo(map);
-
     map.fitBounds(bounds);
 
-    var preschool = L.latLng([290, 340]);
-    L.marker(preschool).addTo(map);
-    var school1 = L.latLng([295, 295]);
-    L.marker(school1).addTo(map);
-    var school2 = L.latLng([325, 300]);
-    L.marker(school2).addTo(map);
-    var house1 = L.latLng([515, 55]);
-    L.marker(house1).addTo(map);
-    var house2 = L.latLng([575, 35]);
-    L.marker(house2).addTo(map);
-    var house3 = L.latLng([420, 500]);
-    L.marker(house3).addTo(map);
-    var house4 = L.latLng([380, 515]);
-    L.marker(house4).addTo(map);
-    var house5 = L.latLng([80, 390]);
-    L.marker(house5).addTo(map);
-    var house6 = L.latLng([540, 640]);
-    L.marker(house6).addTo(map);
-    var house7 = L.latLng([690, 730]);
-    L.marker(house7).addTo(map);
-    var house8 = L.latLng([750, 920]);
-    L.marker(house8).addTo(map);
+    /*:: type Shopfront = {
+			URL: string,
+			coordinates: {y: number, x: number}
+	} */
+
+    fetchCoordinates("bouddi").then((
+      shopfronts /*: Array<any > */,
+    ) /*: void */ => {
+      shopfronts.forEach((shopfront /*: Shopfront */) /*: void */ => {
+        L.marker(L.latLng([shopfront.coordinates.y, shopfront.coordinates.x]))
+          .addTo(map)
+          .bindPopup(`<a href="${shopfront.URL}">Link...</a>`);
+      });
+    });
   }, []);
 
   // console.log(props.count.isInteger());
