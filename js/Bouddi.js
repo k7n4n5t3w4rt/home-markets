@@ -77,11 +77,39 @@ const Bouddi = (props /*: Props */) /*: string */ => {
     fetchCoordinates("bouddi").then((
       shopfronts /*: Array<any > */,
     ) /*: void */ => {
+      var StarIcon = L.Icon.extend({
+        options: {
+          shadowUrl: "../img/blue-star-icon-shadow.png",
+          iconSize: [50, 50], // size of the icon
+          shadowSize: [50, 50], // size of the shadow
+          iconAnchor: [0, 0], // point of the icon which will correspond to marker's location
+          shadowAnchor: [0, 0], // the same for the shadow
+          popupAnchor: [25, 25], // point from which the popup should open relative to the iconAnchor
+        },
+      });
+
+      var starIcon = new StarIcon({ iconUrl: "../img/blue-star-icon.png" });
       shopfronts.forEach((shopfront /*: Shopfront */) /*: void */ => {
-        L.marker(L.latLng([shopfront.coordinates.y, shopfront.coordinates.x]))
+        L.marker([shopfront.coordinates.y, shopfront.coordinates.x], {
+          icon: starIcon,
+        })
           .addTo(map)
           .bindPopup(`<a href="${shopfront.URL}">Link...</a>`);
       });
+      var popup = L.popup();
+
+      function onMapClick(e) {
+        popup
+          .setLatLng(e.latlng)
+          .setContent(
+            `You clicked the map at y:${e.latlng.lat - 25}, x:${
+              e.latlng.lng - 25
+            }`,
+          )
+          .openOn(map);
+      }
+
+      map.on("click", onMapClick);
     });
   }, []);
 
