@@ -79,7 +79,7 @@ const Bouddi = (props /*: Props */) /*: string */ => {
     ) /*: void */ => {
       var StarIcon = L.Icon.extend({
         options: {
-          shadowUrl: "../img/blue-star-icon-shadow.png",
+          shadowUrl: "../img/blue-star-icon2-shadow.png",
           iconSize: [50, 50], // size of the icon
           shadowSize: [50, 50], // size of the shadow
           iconAnchor: [0, 0], // point of the icon which will correspond to marker's location
@@ -88,7 +88,7 @@ const Bouddi = (props /*: Props */) /*: string */ => {
         },
       });
 
-      var starIcon = new StarIcon({ iconUrl: "../img/blue-star-icon.png" });
+      var starIcon = new StarIcon({ iconUrl: "../img/blue-star-icon2.png" });
       shopfronts.forEach((shopfront /*: Shopfront */) /*: void */ => {
         L.marker([shopfront.coordinates.y, shopfront.coordinates.x], {
           icon: starIcon,
