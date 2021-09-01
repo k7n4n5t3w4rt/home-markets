@@ -102,7 +102,7 @@ const Bouddi = (props /*: Props */) /*: string */ => {
         popup
           .setLatLng(e.latlng)
           .setContent(
-            `You clicked the map at y:${e.latlng.lat - 25}, x:${
+            `You clicked the map at y:${e.latlng.lat + 25}, x:${
               e.latlng.lng - 25
             }`,
           )
