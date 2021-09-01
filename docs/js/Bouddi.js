@@ -83,8 +83,8 @@ const Bouddi = (props /*: Props */) /*: string */ => {
           shadowUrl: "../img/blue-star-icon2-shadow.png",
           iconSize: [50, 50], // size of the icon
           shadowSize: [50, 50], // size of the shadow
-          iconAnchor: [0, 0], // point of the icon which will correspond to marker's location
-          shadowAnchor: [0, 0], // the same for the shadow
+          iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+          shadowAnchor: [25, 25], // the same for the shadow
           popupAnchor: [25, 25], // point from which the popup should open relative to the iconAnchor
         },
       });
@@ -103,9 +103,9 @@ const Bouddi = (props /*: Props */) /*: string */ => {
         popup
           .setLatLng(e.latlng)
           .setContent(
-            `You clicked the map at y:${e.latlng.lat + 25}, x:${
-              e.latlng.lng - 25
-            }`,
+            `You clicked the map at y:${Math.floor(
+              e.latlng.lat,
+            )}, x:${Math.floor(e.latlng.lng)}`,
           )
           .openOn(map);
       }
