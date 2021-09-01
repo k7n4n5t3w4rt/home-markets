@@ -18,6 +18,7 @@ export default (
         const found = post.content.match(regex)[0];
         const coordinates = JSON.parse(found) || { y: 0, x: 0 };
         return {
+          title: post.title,
           URL: post.URL,
           coordinates,
         };
@@ -26,6 +27,7 @@ export default (
 };
 
 /*:: type Shopfront = {
+			title: string,
 			URL: string,
 			coordinates: {y: number, x: number}
 	} */

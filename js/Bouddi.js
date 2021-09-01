@@ -70,6 +70,7 @@ const Bouddi = (props /*: Props */) /*: string */ => {
     map.fitBounds(bounds);
 
     /*:: type Shopfront = {
+			title: string,
 			URL: string,
 			coordinates: {y: number, x: number}
 	} */
@@ -94,7 +95,7 @@ const Bouddi = (props /*: Props */) /*: string */ => {
           icon: starIcon,
         })
           .addTo(map)
-          .bindPopup(`<a href="${shopfront.URL}">Link...</a>`);
+          .bindPopup(`<a href="${shopfront.URL}">${shopfront.title}</a>`);
       });
       var popup = L.popup();
 
