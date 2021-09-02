@@ -14,15 +14,26 @@ export default (
       return rawResponseData.posts.map((
         post /*: Object */,
       ) /*: Shopfront */ => {
-        const regex = /(?<=<code>)[^<]+/g;
-        const found = post.content.match(regex)[0];
-        const coordinates = JSON.parse(found) || { y: 0, x: 0 };
-        return {
-          title: post.title,
-          URL: post.URL,
-          coordinates,
-        };
+        const regex = /(<code>)(.+)(<\/code>)/i;
+        const found = post.content.match(regex);
+        if (typeof found !== "undefined") {
+          const coordinates = JSON.parse(found[2]) || { y: 0, x: 0 };
+          return {
+            title: post.title,
+            URL: post.URL,
+            coordinates,
+          };
+        } else {
+          return {
+            title: "TITLE UNDEFINED",
+            URL: "URL UNDEFINED",
+            coordinates: { y: 0, x: 0 },
+          };
+        }
       });
+    })
+    .catch((e /*: Error */) /*: any */ => {
+      console.error(e);
     });
 };
 
