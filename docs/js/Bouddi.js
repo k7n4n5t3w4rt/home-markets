@@ -85,7 +85,7 @@ const Bouddi = (props /*: Props */) /*: string */ => {
           shadowSize: [50, 50], // size of the shadow
           iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
           shadowAnchor: [25, 25], // the same for the shadow
-          popupAnchor: [0, 10], // point from which the popup should open relative to the iconAnchor
+          popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
         },
       });
 
